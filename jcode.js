@@ -5,6 +5,17 @@ $(document).ready(function(){
 	//https://developer.mozilla.org/en/DOM/Selection
 
 	$(document).keydown(function(e) {
+			// MAC webkit caps lock defect::
+			// known issue in webkit
+			// https://bugs.webkit.org/show_bug.cgi?id=18792
+			//
+			// https://lists.webkit.org/pipermail/webkit-dev/2012-December/023164.html
+			// There's a bug reported against Chromium (crbug.com/144757) for the
+			// CapsLock key generating only a keydown when first pressed and released, and
+			// a keyup when next pressed and released, i.e. the keydown & keyup events
+			// correspond with the caps lock-state being toggled, rather than with the key
+			// itself being pressed or released.
+
 			if(e.which != 20) {return;} /*if the key isnt CAPSLOCK return*/
 			var field = $(e.target),
 					start = field.get(0).selectionStart,
