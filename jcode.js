@@ -3,6 +3,7 @@ $(document).ready(function(){
 	//https://developer.mozilla.org/En/CSS/::selection
 	//https://developer.mozilla.org/en/DOM/HTMLInputElement
 	//https://developer.mozilla.org/en/DOM/Selection
+	//https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable
 
 	$(document).keydown(function(e) {
 			// MAC webkit caps lock defect::
@@ -61,5 +62,17 @@ $(document).ready(function(){
 			field.get(0).setSelectionRange(start,end); /* always reselect what was selected */
 		}
 	});
+
+	function textareaAutoHeight() {
+		var h = $('textarea').height(0).height();
+		console.log('h: ',h);
+		var unseen = $('textarea').scrollTop(0).scrollTop(999).scrollTop();
+		console.log('unseen: ',unseen);
+		$('textarea').height($('textarea').height() + unseen);
+		$('.box').css('min-height',$('textarea').outerHeight());
+	}
+
+	textareaAutoHeight();
+	$(document).on('focus keydown keyup mousedown mouseup', textareaAutoHeight);
 
 });
