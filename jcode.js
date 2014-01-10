@@ -64,15 +64,17 @@ $(document).ready(function(){
 	});
 
 	function textareaAutoHeight() {
-		var h = $('textarea').height(0).height();
-		console.log('h: ',h);
-		var unseen = $('textarea').scrollTop(0).scrollTop(999).scrollTop();
+		// KNOWN ISSUE: inserting a newline at the end of the value string causes it to jump.
+		// but the good news is that text wrapping does not cause it to jump.
+		var textarea = $('textarea');
+		textarea.height(0);
+		var unseen = textarea.scrollTop(999).scrollTop();
+		textarea.scrollTop(0);
 		console.log('unseen: ',unseen);
-		$('textarea').height($('textarea').height() + unseen);
-		$('.box').css('min-height',$('textarea').outerHeight());
+		textarea.height(textarea.height() + unseen);
+		$('.box').css('min-height',textarea.outerHeight());
 	}
 
-	textareaAutoHeight();
-	$(document).on('focus keydown keyup mousedown mouseup', textareaAutoHeight);
+	$(document).on('ready focus keydown keyup mousedown mouseup', textareaAutoHeight);
 
 });
