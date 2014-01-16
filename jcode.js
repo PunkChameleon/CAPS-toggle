@@ -69,9 +69,9 @@ $(document).ready(function(){
     var textarea = $('textarea');
     textarea.height(0);
     var unseen = textarea.scrollTop(999).scrollTop();
-    textarea.scrollTop(0);
+    // textarea.scrollTop(0);
     console.log('unseen: ',unseen);
-    textarea.height(textarea.height() + unseen);
+    textarea.height(unseen);
     $('.box').css('min-height',textarea.outerHeight());
   }
 
