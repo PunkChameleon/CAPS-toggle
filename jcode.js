@@ -5,7 +5,7 @@ $(document).ready(function(){
   //https://developer.mozilla.org/en/DOM/Selection
   //https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_Editable
 
-  $(document).keydown(function(e) {
+  function capsToggle(e) {
       // MAC webkit caps lock defect::
       // known issue in webkit
       // https://bugs.webkit.org/show_bug.cgi?id=18792
@@ -61,7 +61,7 @@ $(document).ready(function(){
       */
       field.get(0).setSelectionRange(start,end); /* always reselect what was selected */
     }
-  });
+  }
 
   function textareaAutoHeight() {
     // KNOWN ISSUE: inserting a newline at the end of the value string causes it to jump.
@@ -77,6 +77,27 @@ $(document).ready(function(){
 
   function thisIs_iOS () {
     return window.navigator.userAgent.match(/(?:iPhone|iPad|iPod) .+ Mobile/,'i');
+  }
+
+  function thisIs_macWebkit () {
+    return (window.navigator.platform === "MacIntel" && window.navigator.userAgent.match(/Safari|Chrome/,'i') !== null);
+  }
+
+  $(document).keydown(capsToggle);
+
+  if(thisIs_macWebkit()) {
+    // handle caps keydown/keyup differently
+    $(document).keyup(capsToggle);
+    // MAC webkit caps lock defect::
+    // known issue in webkit
+    // https://bugs.webkit.org/show_bug.cgi?id=18792
+    //
+    // https://lists.webkit.org/pipermail/webkit-dev/2012-December/023164.html
+    // There's a bug reported against Chromium (crbug.com/144757) for the
+    // CapsLock key generating only a keydown when first pressed and released, and
+    // a keyup when next pressed and released, i.e. the keydown & keyup events
+    // correspond with the caps lock-state being toggled, rather than with the key
+    // itself being pressed or released.
   }
 
   $(document).on('ready focus keydown keyup mousedown mouseup', textareaAutoHeight);
