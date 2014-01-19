@@ -19,9 +19,9 @@ $(document).ready(function(){
 
       if(e.which != 20) {return;} /*if the key isnt CAPSLOCK return*/
       var field = $(e.target),
+          fieldVal = field.val(),
           start = field.get(0).selectionStart,
           end = field.get(0).selectionEnd,
-          fieldVal,
           selStr,
           selArray,
           caseStr,
@@ -29,7 +29,6 @@ $(document).ready(function(){
           charCode;
 
     if(start != end) {  /*im not sure how to access "isCollapsed or something"*/
-      fieldVal = field.val();
       selStr = (fieldVal).slice(start,end);
       selArray = selStr.split('');
       caseStr = '';
@@ -60,6 +59,44 @@ $(document).ready(function(){
       console.log('logObj', logObj);
       */
       field.get(0).setSelectionRange(start,end); /* always reselect what was selected */
+    } else {
+
+      var phrases = ['simply select the text you want to change and press CAPS LOCK',
+      'simply select the text you want',
+      'Select some text then press Caps Lock',
+      'Select some text',
+      'press Caps Lock',
+      'toggle your selection',
+      'Seriously, Try it',
+      '.+\.'];
+
+      var m;
+
+      for(var i=0; i<phrases.length; i++) {
+        var pattern = new RegExp(phrases[i],'im');
+        m = fieldVal.match(pattern);
+        if(m) {break;}
+      }
+
+      // start selection here
+      start = fieldVal.search(m[0]);
+      // end selection here
+      end = fieldVal.search(m[0]) + m[0].length;
+
+      if( field.get(0).createTextRange ) {
+        var selRange = field.get(0).createTextRange();
+        selRange.collapse(true);
+        selRange.moveStart('character', start);
+        selRange.moveEnd('character', end);
+        selRange.select();
+      } else if( field.get(0).setSelectionRange ) {
+        field.get(0).setSelectionRange(start, end);
+      } else if( field.get(0).selectionStart ) {
+        field.get(0).selectionStart = start;
+        field.get(0).selectionEnd = end;
+      }
+      field.get(0).focus();
+
     }
   }
 
@@ -105,5 +142,15 @@ $(document).ready(function(){
   if(thisIs_iOS()){
     alert("I'm sorry, but your device doesn't have a real CAPSLOCK key. Try this demo on a device with a physical keyboard");
   }
+
+
+
+
+
+
+
+
+
+
 
 });
