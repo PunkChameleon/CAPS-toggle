@@ -75,6 +75,14 @@ $(document).ready(function(){
     $('.box').css('min-height',textarea.outerHeight());
   }
 
+  function thisIs_iOS () {
+    return window.navigator.userAgent.match(/(?:iPhone|iPad|iPod) .+ Mobile/,'i');
+  }
+
   $(document).on('ready focus keydown keyup mousedown mouseup', textareaAutoHeight);
+
+  if(thisIs_iOS()){
+    alert("I'm sorry, but your device doesn't have a real CAPSLOCK key. Try this demo on a device with a physical keyboard");
+  }
 
 });
