@@ -10,9 +10,18 @@ html {
 	font-family: 'Roboto',helvetica,arial,verdana,sans-serif;
 	margin:0;
 	padding:0;
-	/* http://www.flickr.com/photos/elpatojo/316096311/sizes/o/ */
-	background: url("http://farm1.staticflickr.com/103/316096311_92ef8ce108_o.jpg") repeat scroll 0 0 / cover  rgba(0, 0, 0, 0);
 	color:#eee;
+}
+
+html {
+	/* This background-image is published under the Creative Commons Attribution, Non Commercial - Share Alike 2.5 license. Some rights reserved by el patojo */
+	/* http://www.flickr.com/photos/elpatojo/316096311/sizes/o/ */
+	background: url("http://farm1.staticflickr.com/103/316096311_92ef8ce108_o.jpg") repeat scroll 0 0 / cover #160B0C;
+}
+
+body {
+	position: relative;
+	padding: 1px 0;
 }
 
 h1 {
@@ -33,19 +42,14 @@ h1 span {
 
 .box {
 	position:relative;
-	/*height:150px;*/
-	/*width:460px;*/
 	width: 540px;
-	margin:30px auto 80px auto;
-	/*background-color:#fff;*/
+	margin:30px auto 100px auto;
+	background: #DCDCDC;
 	background: rgba(220, 220, 220, 0.7);
 	color: #333;
 	border:1px solid #BFBFBF;
 	border-radius: 3px;
-	/*padding: 2em 3em;*/
-	/*max-height:1px;*/
 	transition: min-height 0.4s 0s ease-in-out;
-	/*height: 550px;*/
 	min-height: 33em;
 	height: 2em;
 	overflow: hidden;
@@ -75,14 +79,10 @@ h1 span {
 }
 
 .box textarea:focus {
-	outline: none;
+	outline: 1px dotted #DCDCDC;
 }
 
 .box textarea::-moz-selection {
-	color:#601A02;
-	background: #FDCD78;
-}
-.box textarea::-webkit-selection {
 	color:#601A02;
 	background: #FDCD78;
 }
@@ -91,29 +91,78 @@ h1 span {
 	color:#601A02;
 	background: #FDCD78;
 }
-
+/*
 .box button {
-	background: pink;
-  border: none;
+	background: transparent;
+  border: 1px solid #FDCD78;
+  border-radius: 5px;
   position: absolute;
   right: 20px;
   bottom: 20px;
-
   padding: 0;
-
   height: 48px;
   width: 48px;
   cursor: pointer;
+  box-shadow: 0 0 8px #FDCD78, 0 0 5px #FDCD78 inset, 0 0 30px rgba(253, 205, 120, 0.6) inset;
+  transform: scale(1);
+  transition: transform 0.4s ease-in-out 0s;
+}
+
+.box button:active {
+  transform: scale(0.97);
 }
 
 .box button span {
-	/*visibility: hidden;*/
-	color: deeppink;
+	color: #FDCD78;
+}
+*/
+
+
+.attribution {
+	display: block;
+	position: absolute;
+	right: 2em;
+	bottom: 1.4em;
+	width: 130px;
+	background: #e9e9e9;
+	border-radius: 5px;
+	border: 1px solid #111;
+	cursor: default;
+	margin: 0;
+	padding: 5px;
+	opacity: 0.3;
+	-moz-transition: opacity 0.4s ease 0s;
+	-webkit-transition: opacity 0.4s ease 0s;
+	transition: opacity 0.4s ease 0s;
 }
 
-/*#capsLockWarning {
-	height:20px;
-	width:20px;
-	border:2px solid #000;
-	-moz-border-radius:6px;
-}*/
+.attribution:hover,
+.attribution:focus {
+	opacity: 0.9;
+}
+
+.attribution .license {
+	font-size: 0;
+	display: block;
+	padding-top: 2px;
+}
+
+.attribution img {
+	height: auto;
+	width: 100%;
+}
+
+.attribution span,
+.attribution a,
+.attribution a:link,
+.attribution a:active {
+	text-decoration: none;
+	color: #111;
+}
+
+.attribution a:hover,
+.attribution a:focus {
+	text-decoration: underline;
+}
+
+
