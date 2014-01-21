@@ -16,7 +16,8 @@ html {
 html {
 	/* This background-image is published under the Creative Commons Attribution, Non Commercial - Share Alike 2.5 license. Some rights reserved by el patojo */
 	/* http://www.flickr.com/photos/elpatojo/316096311/sizes/o/ */
-	background: url("http://farm1.staticflickr.com/103/316096311_92ef8ce108_o.jpg") repeat scroll top center / cover #160B0C;
+	background: url("http://farm1.staticflickr.com/103/316096311_92ef8ce108_o.jpg") repeat scroll top center #160B0C;
+	background-size: cover;
 }
 
 body {
